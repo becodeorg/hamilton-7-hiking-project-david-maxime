@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql:3306
--- Generation Time: Dec 16, 2022 at 02:51 PM
--- Server version: 8.0.31
--- PHP Version: 8.0.19
+-- Host: localhost
+-- Generation Time: Dec 19, 2022 at 09:40 AM
+-- Server version: 8.0.21-0ubuntu0.20.04.4
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Hiking`
+-- Database: `hamilton-7-hiking-dama`
 --
 
 -- --------------------------------------------------------
