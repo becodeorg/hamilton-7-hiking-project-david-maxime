@@ -22,7 +22,11 @@
     </nav>
 
     <?php if (!empty($_SESSION['user'])): ?>
-        <span>Hello <?= $_SESSION['nickname'] ?></span>
+        <span>Hello <?php echo $_SESSION['user']['username'] ?></span>
+        <br>
+        <a href="/addHike"><span>Add a new hike!</span></a>
+        <a href="/myhikes"><span>Manage my hikes</span></a>
+        <a href="/myprofile">See my profile</a>
     <?php endif; ?>
 </header>
 

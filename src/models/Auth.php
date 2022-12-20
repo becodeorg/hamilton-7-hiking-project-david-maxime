@@ -20,6 +20,23 @@ class Auth extends Database
         }
     }
 
+    public function update(string $firstname, string $lastname, string $nickname, string $email, string $password): void
+    {
+        if (!$this->query(
+            "UPDATE Users SET `firstname`= ?, `lastname`= ?, `nickname`= ?, `email`= ?, `password`= ? WHERE ID = ?",
+            [
+                $firstname,
+                $lastname,
+                $nickname,
+                $email,
+                $password,
+                827836616
+            ]
+        )) {
+            throw new Exception('Error during registration.');
+        }
+    }
+
     public function find(string $nickname): array
     {
         if (!$user = $this->query(
