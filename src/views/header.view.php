@@ -21,12 +21,18 @@
         </ul>
     </nav>
 
-    <?php if (!empty($_SESSION['user'])): ?>
-        <span>Hello <?php echo $_SESSION['user']['username'] ?></span>
+    <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] === 0): ?>
+        <span>Hello <?php echo $_SESSION['user']['nickname'] ?></span>
         <br>
         <a href="/addHike"><span>Add a new hike!</span></a>
         <a href="/myhikes"><span>Manage my hikes</span></a>
         <a href="/myprofile">See my profile</a>
+    <?php endif; ?>
+    <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] === 1): ?>
+        <span>Hello <?php echo $_SESSION['user']['nickname'] ?></span>
+        <br>
+        <a href="/addHike"><span>Add a new hike!</span></a>
+        <a href="/myprofile"><span>Admin Panel</span></a>
     <?php endif; ?>
 </header>
 

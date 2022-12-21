@@ -21,5 +21,25 @@
         <label for="description">Description</label>
         <input type="text" name="description">
     </div>
-    <button type="submit">Add your hike !</button>
+    <div>
+        <label for="tags">Tag</label>
+
+        <input list="tags" name="tags">
+        <datalist id="tags">
+            <?php foreach ($tags as $tag) : ?>
+            <option value="<?php echo $tag["name"] ?>">
+                <?php endforeach; ?>
+        </datalist>
+
+    </div>
+    <button type="submit" name="addHike">Add your hike !</button>
+    <br>
+    <p>Wish to add a tag before creating your hike?</p>
+    <form action="addTag" method="post">
+        <div>
+            <label for="tagName">Name</label>
+            <input type="text" name="tagName">
+        </div>
+        <button type="submit" name="addTag">Add tag</button>
+    </form>
 </form>
