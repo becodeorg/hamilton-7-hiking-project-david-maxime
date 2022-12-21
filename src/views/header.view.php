@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-    <h1 class="text-blue-900 text-3xl">Hiking Manager</h1>
+    <h1 class="text-3xl ">Hiking Manager</h1>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
