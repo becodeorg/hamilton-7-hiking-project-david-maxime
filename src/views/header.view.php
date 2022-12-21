@@ -10,9 +10,15 @@
 </head>
 <body>
 <header>
-    <h1 class="text-3xl ">Hiking Manager</h1>
-    <nav>
-        <ul>
+
+<!-- TITLE -->
+    <section class="text-3xl font-bold uppercase bg-slate-500 text-white flex justify-center">
+        <h1>Hiking Manager</h1>
+    </section>
+
+<!-- NAV -->
+    <nav class="bg-slate-300">
+        <ul class="flex flex-row justify-around font-semibold">
             <li><a href="/">Home</a></li>
             <?php if (empty($_SESSION['user'])): ?>
                 <li><a href="/login">Login</a></li>
