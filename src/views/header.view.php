@@ -5,10 +5,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Hiking Manager</title>
 </head>
 <body>
 <header>
+    <h1 class="text-blue-900 text-3xl">Hiking Manager</h1>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -22,7 +24,11 @@
     </nav>
 
     <?php if (!empty($_SESSION['user'])): ?>
-        <span>Hello <?= $_SESSION['nickname'] ?></span>
+        <span>Hello <?php echo $_SESSION['user']['username'] ?></span>
+        <br>
+        <a href="/addHike"><span>Add a new hike!</span></a>
+        <a href="/myhikes"><span>Manage my hikes</span></a>
+        <a href="/myprofile">See my profile</a>
     <?php endif; ?>
 </header>
 
