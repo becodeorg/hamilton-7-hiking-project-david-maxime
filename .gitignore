@@ -1,4 +1,6 @@
 .idea
 ./dbdata/
+/dbdata/
 .env
 ./src/vendor/
+/src/vendor/
