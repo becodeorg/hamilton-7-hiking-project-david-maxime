@@ -12,10 +12,10 @@
 <body>
     <header>
         <!-- NAV -->
-        <nav class="bg-slate-300 flex flex-row justify-between h-12 items-center">
+        <nav class=" flex flex-row justify-between h-12 items-center">
 
             <!-- HOME LOGO/TITLE -->
-            <section class=" title text-2xl font-bold uppercase text-blue-900 flex justify-center mx-5">
+            <section class=" title text-2xl font-bold uppercase text-green-800 flex justify-center mx-5">
                 <a href="/">
                     <h1>Hiking Manager</h1>
                 </a>
@@ -26,7 +26,7 @@
             <ul class="flex flex-row justify-around font-semibold w-52 mx-3">
 
                 <!-- LOGIN -->
-                <li class="bg-green-700 w-24 h-8 flex justify-center items-center rounded-full text-white"><a href="/login">Login</a></li>
+                <li class="bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white"><a href="/login">Login</a></li>
 
                 <!-- REGISTER -->
                 <l class="bg-slate-200 w-24 h-8 flex justify-center items-center rounded-full "><a href="/registration">Register</a></l>
