@@ -18,7 +18,7 @@
 
 <!-- NAV -->
     <nav class="bg-slate-300">
-        <ul class="flex flex-row justify-around font-semibold">
+        <ul class="flex flex-row justify-around font-semibold hover:texte-red-300">
             <li><a href="/">Home</a></li>
             <?php if (empty($_SESSION['user'])): ?>
                 <li><a href="/login">Login</a></li>
