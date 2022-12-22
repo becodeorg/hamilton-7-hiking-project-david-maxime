@@ -56,7 +56,7 @@ class TagsController
 
     public function addTagFromCreateForm($input)
     {
-        if (empty($input) || empty($input['name']) ) {
+        if (empty($input) || empty($input['tagName']) ) {
             throw new Exception('Form data not validated.');
         }
 

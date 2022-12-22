@@ -116,7 +116,6 @@ if ($url === 'addHike') {
     if ($method === 'POST') {
 
         $hikesController->addHike($_POST);
-
     }
 
 }

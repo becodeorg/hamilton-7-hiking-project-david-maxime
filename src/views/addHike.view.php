@@ -32,14 +32,11 @@
         </datalist>
 
     </div>
+    <div>
+        <p>Desired tag is not in the list? Write it here and it will be added to your hike:</p>
+        <label for="tagName">Name</label>
+        <input type="text" name="tagName">
+    </div>
     <button type="submit" name="addHike">Add your hike !</button>
-    <br>
-    <p>Wish to add a tag before creating your hike?</p>
-    <form action="addTag" method="post">
-        <div>
-            <label for="tagName">Name</label>
-            <input type="text" name="tagName">
-        </div>
-        <button type="submit" name="addTag">Add tag</button>
-    </form>
 </form>
+
