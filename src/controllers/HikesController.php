@@ -66,8 +66,9 @@ class HikesController
         include '../views/footer.view.php';
     }
 
-    public function showUpdateHikeForm(): void
+    public function showUpdateHikeForm($id): void
     {
+        $hikes = $this->singleHike->find($id);
         $tags = $this->tagModel->findAll();
 
         include '../views/header.view.php';
@@ -89,9 +90,9 @@ class HikesController
             $hikeDuration = intval($input['duration']);
             $hikeElevation = intval($input['elevation']);
             $hikeDescription = $input['description'];
-            $tag= htmlspecialchars($input['tags']);
+            $tags= array_map("htmlspecialchars", $input['tags']);
 
-            $this->singleHike->createHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription, $tag);
+            $this->singleHike->createHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription, $tags);
 
             // Then, we redirect to the home page
             http_response_code(302);
@@ -132,9 +133,9 @@ class HikesController
         $hikeElevation = intval($input['elevation']);
         $hikeDescription = $input['description'];
         $id = $input['id'];
-        $tag = htmlspecialchars($input['tags']);
+        $tags= array_map("htmlspecialchars", $input['tags']);
 
-        $this->singleHike->modifyHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription, $id, $tag);
+        $this->singleHike->modifyHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription, $id, $tags);
 
 
         // Then, we redirect to the home page

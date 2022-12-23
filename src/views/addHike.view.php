@@ -23,20 +23,17 @@
     </div>
     <div>
         <label for="tags">Tag</label>
+        <br>
 
-        <input list="tags" name="tags">
-        <datalist id="tags">
+
             <?php foreach ($tags as $tag) : ?>
-            <option value="<?php echo $tag["name"] ?>">
-                <?php endforeach; ?>
-        </datalist>
+                <input type ="checkbox" name="tags[]" value="<?php echo $tag["name"] ?>">
+            <label for="<?php echo $tag["name"] ?>"><?php echo $tag["name"] ?></label>
+
+            <?php endforeach; ?>
+
 
     </div>
-    <div>
-        <p>Desired tag is not in the list? Write it here and it will be added to your hike:</p>
-        <label for="tagName">Name</label>
-        <input type="text" name="tagName">
-    </div>
-    <button type="submit" name="addHike">Add your hike !</button>
+
 </form>
 
