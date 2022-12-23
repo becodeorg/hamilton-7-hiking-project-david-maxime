@@ -12,7 +12,7 @@
 <body>
     <header>
         <!-- NAV -->
-        <nav class=" flex flex-row justify-between h-12 items-center">
+        <nav class=" flex flex-row justify-between h-16 items-center">
 
             <!-- HOME LOGO/TITLE -->
             <section class=" title text-2xl font-bold uppercase text-green-800 flex justify-center mx-5">
@@ -51,4 +51,8 @@
             <a href="/addHike"><span>Add a new hike!</span></a>
             <a href="/myprofile"><span>Admin Panel</span></a>
         <?php endif; ?>
+
+        <section class="heroBgImage w-full h-[43rem] bg-red-500">
+            <img src="" alt="image/png">
+        </section>
     </header>
