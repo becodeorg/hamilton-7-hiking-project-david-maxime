@@ -19,21 +19,22 @@
                 </a>
             <?php endforeach; ?>
         </ul>
-                <!-- HIKES -->
+        <!-- HIKES -->
         <ul class="grid grid-cols-4 gap-4">
             <?php foreach ($hikes as $hike) : ?>
 
                 <li class="bg-gradient-to-t from-slate-900 to-invisible | text-white | flex flex-col justify-end | relative | m-8 | w-96 h-64 | rounded-xl | overflow-hidden | static">
+                    <section class="blocText | mb-8">
                     <a href="/hike?id=<?= $hike['ID']; ?>">
                         <span class="text-xl mx-8"><?= $hike['name'] ?></span>
                     </a>
-                    <section class="flex flex-row">
-                    <span class="mx-8"><?= $hike['duration'] ?>min</span>
-                    <span class="mx-8"><?= $hike['distance'] ?>km</span>
-                    <span class="mx-8"><?= $hike['elevation_gain'] ?>m</span>
-                    </section>
-                    <br>
+                    <ul class="flex flex-row">
+                        <li><span class="mx-8"><?= $hike['duration'] ?>min</span><li>
+                        <li><span class="mx-8"><?= $hike['distance'] ?>km</span></li>
+                        <li><span class="mx-8"><?= $hike['elevation_gain'] ?>m</span></li>
+                    </ul>
                     <span class="mx-8"><?= $hike['description'] ?></span>
+                    </section>
                     <img class="absolute left-0 top-0 -z-50" src="https://unsplash.it/400/300?random=1" alt="image/png">
                 </li>
             <?php endforeach; ?>
