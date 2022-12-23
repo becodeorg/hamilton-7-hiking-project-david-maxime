@@ -25,14 +25,14 @@
                 <!-- LINKS -->
                 <ul class="flex flex-row justify-around font-semibold w-52 mx-3">
 
-                    <!-- LOGIN -->
+                    <!-- BUTTON - LOGIN -->
                     <li class="bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white"><a href="/login">Login</a></li>
 
-                    <!-- REGISTER -->
+                    <!-- BUTTON - REGISTER -->
                     <li class="bg-slate-200 w-24 h-8 flex justify-center items-center rounded-full "><a href="/registration">Register</a></li>
                 <?php else : ?>
 
-                    <!-- LOGOUT -->
+                    <!-- BUTTON - LOGOUT -->
                     <li class="list-none bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white mx-8""><a href=" /logout">Logout</a></li>
                 <?php endif; ?>
                 </ul>
@@ -52,7 +52,8 @@
             <a href="/myprofile"><span>Admin Panel</span></a>
         <?php endif; ?>
 
-        <section class="heroBgImage w-full h-[43rem] bg-red-500">
-            <img src="" alt="image/png">
+        <section class="heroBgImage w-full h-[43rem] bg-red-500 overflow-hidden relative">
+            <img src="https://unsplash.it/1920/1080" alt="image/png">
         </section>
     </header>
+</body>

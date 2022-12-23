@@ -13,7 +13,7 @@
     <main class="flex justify-center items-center  h-screen">
 
         <!-- CONTAINER -->
-        <section class="container bg-gradient-to-t from-slate-300 to-slate-200 shadow-lg shadow-slate-500/50 w-[30rem] h-[48rem] rounded-3xl flex justify-center items-center">
+        <section class="container bg-gradient-to-t from-slate-300 to-slate-200 shadow-lg shadow-slate-500/50 w-[30rem] h-[48rem] rounded-3xl flex justify-center items-center static">
 
         <!-- CONTENT -->
             <div class="content w-[26rem] h-[36rem] flex flex-col justify-center items-center">
