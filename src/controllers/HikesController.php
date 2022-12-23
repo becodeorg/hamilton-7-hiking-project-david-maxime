@@ -5,18 +5,41 @@ declare(strict_types=1);
 class HikesController
 {
     private Hike $singleHike;
+    private Tag $tagModel;
 
     public function __construct()
     {
         $this->singleHike = new Hike();
+        $this->tagModel = new Tag();
     }
 
     public function index(): void
     {
         $hikes = $this->singleHike->findAll();
+        $tags = $this->tagModel->findAll();
+
+
+            include '../views/header.view.php';
+            include '../views/index.view.php';
+            include '../views/footer.view.php';
+
+    }
+
+    public function indexAdmin():void
+    {
+        $hikes = $this->singleHike->findAll();
 
         include '../views/header.view.php';
-        include '../views/index.view.php';
+        include '../views/adminIndex.view.php';
+        include '../views/footer.view.php';
+    }
+
+    public function showHikesForTag($tagName): void
+    {
+        $hikes = $this->singleHike->findByTag($tagName);
+
+        include '../views/header.view.php';
+        include '../views/indexByTag.view.php';
         include '../views/footer.view.php';
     }
 
@@ -37,6 +60,7 @@ class HikesController
 
     public function showAddHikeForm(): void
     {
+        $tags = $this->tagModel->findAll();
         include '../views/header.view.php';
         include '../views/addHike.view.php';
         include '../views/footer.view.php';
@@ -44,6 +68,8 @@ class HikesController
 
     public function showUpdateHikeForm(): void
     {
+        $tags = $this->tagModel->findAll();
+
         include '../views/header.view.php';
         include '../views/updateHike.view.php';
         include '../views/footer.view.php';
@@ -55,24 +81,47 @@ class HikesController
             throw new Exception('Form data not validated.');
         }
 
+        if (empty($input['tagName']))
+        {
         // Sanitize/validate input
-        $hikeName = $input['name'];
-        $hikeDistance = intval($input['distance']);
-        $hikeDuration = intval($input['duration']);
-        $hikeElevation = intval($input['elevation']);
-        $hikeDescription = $input['description'];
+            $hikeName = $input['name'];
+            $hikeDistance = intval($input['distance']);
+            $hikeDuration = intval($input['duration']);
+            $hikeElevation = intval($input['elevation']);
+            $hikeDescription = $input['description'];
+            $tag= htmlspecialchars($input['tags']);
 
-        $this->singleHike->createHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription);
+            $this->singleHike->createHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription, $tag);
 
+            // Then, we redirect to the home page
+            http_response_code(302);
+            header('location: /');
+        }
 
-        // Then, we redirect to the home page
-        http_response_code(302);
-        header('location: /');
+        if ($input['tagName'])
+        {
+            // Sanitize/validate input
+            $hikeName = $input['name'];
+            $hikeDistance = intval($input['distance']);
+            $hikeDuration = intval($input['duration']);
+            $hikeElevation = intval($input['elevation']);
+            $hikeDescription = $input['description'];
+            //$tag= htmlspecialchars($input['tags']);
+            $tagName = htmlspecialchars($input['tagName']);
+
+            $this->tagModel->createTag($tagName);
+            $this->singleHike->createHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription, $tagName);
+
+            // Then, we redirect to the home page
+            http_response_code(302);
+            header('location: /');
+        }
+
     }
 
     public function updateHike(array $input)
     {
-        if (empty($input) || empty($input['name']) || empty($input['distance']) || empty($input['duration']) || empty($input['elevation']) || empty($input['description'])) {
+        if (empty($input) || empty($input['name']) || empty($input['distance']) || empty($input['duration']) || empty($input['elevation']) || empty($input['description']) || empty($input['id'])|| empty($input['tags'])) {
             throw new Exception('Form data not validated.');
         }
 
@@ -82,8 +131,10 @@ class HikesController
         $hikeDuration = intval($input['duration']);
         $hikeElevation = intval($input['elevation']);
         $hikeDescription = $input['description'];
+        $id = $input['id'];
+        $tag = htmlspecialchars($input['tags']);
 
-        $this->singleHike->modifyHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription);
+        $this->singleHike->modifyHike($hikeName,$hikeDistance,$hikeDuration,$hikeElevation,$hikeDescription, $id, $tag);
 
 
         // Then, we redirect to the home page
@@ -98,5 +149,14 @@ class HikesController
         include '../views/header.view.php';
         include '../views/myhikes.view.php';
         include '../views/footer.view.php';
+    }
+
+    public function deleteHike(array $input)
+    {
+        $id = $input['id'];
+        $this->singleHike->removeHike($id);
+
+        http_response_code(302);
+        header('location: /');
     }
 }

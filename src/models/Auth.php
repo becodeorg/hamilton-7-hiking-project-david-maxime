@@ -2,12 +2,24 @@
 
 class Auth extends Database
 {
-    public function create(string $firstname, string $lastname, string $nickname, string $email, string $password): void
+    public function findAll(): array|false
+    {
+        try {
+            return $this->query(
+                'SELECT * FROM Users'
+            )->fetchAll();
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return [];
+        }
+    }
+    public function create(string $firstname, string $lastname, string $nickname, string $email, string $password, int $id): void
     {
         if (!$this->query(
             "INSERT INTO Users(`ID`, `firstname`, `lastname`, `nickname`, `email`, `password`, `isAdmin`) VALUES (?, ?, ?, ?, ?, ?, ?)",
             [
-                rand(0, 1000000000),
+                $id,
                 $firstname,
                 $lastname,
                 $nickname,
@@ -30,7 +42,7 @@ class Auth extends Database
                 $nickname,
                 $email,
                 $password,
-                827836616
+                $_SESSION["user"]["id"]
             ]
         )) {
             throw new Exception('Error during registration.');
@@ -49,5 +61,18 @@ class Auth extends Database
         }
 
         return $user;
+    }
+
+    public function removeUser($id)
+    {
+        $this->query('SET foreign_key_checks = 0');
+        if (!$this->query(
+            "DELETE FROM Users WHERE ID = ?",
+            [
+                $id,
+            ]
+        )) {
+            throw new Exception('Error during hike deletion.');
+        }
     }
 }

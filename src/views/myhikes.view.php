@@ -4,10 +4,19 @@
             <a href="/hike?id=<?= $hike['ID']; ?>">
                 <span><?= $hike['name'] ?></span>
             </a>
-            <a href="/updateHike?id=<?= $hike['ID']; ?>">
+            <a href="/updateHike?id=<?= $hike['ID'] ?>">
             <button>Update</button>
             </a>
-            <button>Delete</button>
+            <form method="post">
+                <input type="text" name="id" value="<?php echo $hike['ID']?>">
+            <button type="submit">Delete</button>
+            </form>
         </li>
+        <?php if ($hike['updateTime'])
+        {
+            echo "Last updated: " . $hike['updateTime'];
+        }?>
     <?php endforeach; ?>
 </ul>
+
+

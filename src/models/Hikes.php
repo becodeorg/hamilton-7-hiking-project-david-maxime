@@ -20,7 +20,7 @@ class Hike extends Database
     {
         try {
             return $this->query(
-                'SELECT name, ID FROM Hikes WHERE UserID = ?',
+                'SELECT * FROM Hikes WHERE UserID = ?',
                 [
                     $_SESSION["user"]["id"]
                 ]
@@ -48,13 +48,14 @@ class Hike extends Database
         }
     }
 
-    public function createHike(string $name, int $distance, int $duration, int $elevation, string $description)
+    public function createHike(string $name, int $distance, int $duration, int $elevation, string $description, string $tag)
     {
         $this->query('SET foreign_key_checks = 0');
+        $hikeID = rand(0, 1000000000);
         if (!$this->query(
             "INSERT INTO Hikes(`ID`, `name`, `date_of_creation`, `distance`, `duration`, `elevation_gain`, `description`, `UserID`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             [
-                rand(0, 1000000000),
+                $hikeID,
                 $name,
                 date("Y-m-d"),
                 $distance,
@@ -66,13 +67,20 @@ class Hike extends Database
         )) {
             throw new Exception('Error during hike creation.');
         }
+        $this->query("INSERT INTO HikesTags (`HikesID`,`TagsID`) SELECT (SELECT ID FROM Hikes WHERE ID = ?), (SELECT ID FROM Tags WHERE name = ?)",
+            [
+                $hikeID,
+                $tag
+            ]
+        );
     }
 
-    public function modifyHike(string $name, int $distance, int $duration, int $elevation, string $description)
+    public function modifyHike(string $name, int $distance, int $duration, int $elevation, string $description, $id, string $tag)
     {
+        if($_SESSION['user']['isAdmin'] === 0) {
         $this->query('SET foreign_key_checks = 0');
         if (!$this->query(
-            "UPDATE Hikes SET `name`= ?, `distance`= ?, `duration` = ?, `elevation_gain` = ?, `description` = ?, updateTime = ? WHERE UserID = ?",
+            "UPDATE Hikes SET `name`= ?, `distance`= ?, `duration` = ?, `elevation_gain` = ?, `description` = ?, updateTime = ?) WHERE ID = ? AND UserID= ?",
             [
                 $name,
                 $distance,
@@ -80,10 +88,78 @@ class Hike extends Database
                 $elevation,
                 $description,
                 date("Y-m-d"),
+                $id,
                 $_SESSION["user"]["id"]
             ]
         )) {
             throw new Exception('Error during hike creation.');
+        }}
+
+        if($_SESSION['user']['isAdmin'] === 1) {
+            $this->query('SET foreign_key_checks = 0');
+            if (!$this->query(
+                "UPDATE Hikes SET `name`= ?, `distance`= ?, `duration` = ?, `elevation_gain` = ?, `description` = ?, updateTime = ? WHERE ID = ?",
+                [
+                    $name,
+                    $distance,
+                    $duration,
+                    $elevation,
+                    $description,
+                    date("Y-m-d"),
+                    $id
+                ]
+            )) {
+                throw new Exception('Error during hike creation.');
+            }}
+            $this->query("DELETE FROM HikesTags WHERE HikesID = ?", [$id]);
+            $this->query("INSERT INTO HikesTags (`HikesID`,`TagsID`) SELECT (SELECT ID FROM Hikes WHERE ID = ?), (SELECT ID FROM Tags WHERE name = ?)",
+            [
+                $id,
+                $tag
+            ]);
+    }
+
+    public function removeHike($id)
+    {
+        if($_SESSION['user']['isAdmin'] === 0) {
+        $this->query('SET foreign_key_checks = 0');
+        if (!$this->query(
+            "DELETE FROM Hikes WHERE ID = ? AND UserID= ?",
+            [
+                $id,
+                $_SESSION["user"]["id"]
+            ]
+        )) {
+            throw new Exception('Error during hike deletion.');
+        }
+        }
+
+        if($_SESSION['user']['isAdmin'] === 1) {
+            $this->query('SET foreign_key_checks = 0');
+            if (!$this->query(
+                "DELETE FROM Hikes WHERE ID = ?",
+                [
+                    $id,
+                ]
+            )) {
+                throw new Exception('Error during hike deletion.');
+            }
         }
     }
+
+    public function findByTag(string $tagName)
+    {
+        try{
+            return $this->query("SELECT H.*
+                            FROM Hikes H
+                            JOIN HikesTags HT
+                              ON H.ID = HT.HikesID
+                            JOIN Tags T
+                              ON T.ID = HT.TagsID WHERE T.name = ?", [$tagName])
+                ->fetchAll();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }return [];
+        }
+
 }

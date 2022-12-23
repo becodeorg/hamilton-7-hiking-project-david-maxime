@@ -27,6 +27,6 @@ abstract class Database
 
     public function getLastInsertId(): false|string
     {
-        return $this->pdo->lastInsertId("ID");
+        return $this->pdo->lastInsertId();
     }
 }
