@@ -2,7 +2,7 @@
     <?php foreach ($hikes as $hike) : ?>
         <li>
             <a href="/hike?id=<?= $hike['ID']; ?>">
-                <span><?= $hike['name'] ?></span>
+                <span class="text-red-500"><?= $hike['name'] ?></span>
             </a>
             <a href="/updateHike?id=<?= $hike['ID'] ?>">
             <button>Update</button>
