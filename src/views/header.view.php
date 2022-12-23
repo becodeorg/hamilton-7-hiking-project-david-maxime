@@ -19,38 +19,35 @@
                 <a href="/">
                     <h1>Hiking Manager</h1>
                 </a>
-                <?php if (empty($_SESSION['user'])) : ?>
             </section>
+            <?php if (empty($_SESSION['user'])) : ?>
+                <!-- LINKS -->
+                <ul class="flex flex-row justify-around font-semibold w-52 mx-3">
 
-            <!-- LINKS -->
-            <ul class="flex flex-row justify-around font-semibold w-52 mx-3">
+                    <!-- LOGIN -->
+                    <li class="bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white"><a href="/login">Login</a></li>
 
-                <!-- LOGIN -->
-                <li class="bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white"><a href="/login">Login</a></li>
+                    <!-- REGISTER -->
+                    <li class="bg-slate-200 w-24 h-8 flex justify-center items-center rounded-full "><a href="/registration">Register</a></li>
+                <?php else : ?>
 
-                <!-- REGISTER -->
-                <li class="bg-slate-200 w-24 h-8 flex justify-center items-center rounded-full "><a href="/registration">Register</a></li>
-            <?php else : ?>
-
-                <!-- LOGOUT -->
-                <li class="list-none bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white""><a href="/logout">Logout</a></li>
-            <?php endif; ?>
-            </ul>
+                    <!-- LOGOUT -->
+                    <li class="list-none bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white""><a href=" /logout">Logout</a></li>
+                <?php endif; ?>
+                </ul>
         </nav>
 
-    <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] === 0): ?>
-        <span>Hello <?php echo $_SESSION['user']['nickname'] ?></span>
-        <br>
-        <a href="/addHike"><span>Add a new hike!</span></a>
-        <a href="/myhikes"><span>Manage my hikes</span></a>
-        <a href="/myprofile">See my profile</a>
-    <?php endif; ?>
-    <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] === 1): ?>
-        <span>Hello <?php echo $_SESSION['user']['nickname'] ?></span>
-        <br>
-        <a href="/addHike"><span>Add a new hike!</span></a>
-        <a href="/myprofile"><span>Admin Panel</span></a>
-    <?php endif; ?>
-</header>
-
-<h1>Hiking Manager</h1>
+        <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] === 0) : ?>
+            <span>Hello <?php echo $_SESSION['user']['nickname'] ?></span>
+            <br>
+            <a href="/addHike"><span>Add a new hike!</span></a>
+            <a href="/myhikes"><span>Manage my hikes</span></a>
+            <a href="/myprofile">See my profile</a>
+        <?php endif; ?>
+        <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] === 1) : ?>
+            <span>Hello <?php echo $_SESSION['user']['nickname'] ?></span>
+            <br>
+            <a href="/addHike"><span>Add a new hike!</span></a>
+            <a href="/myprofile"><span>Admin Panel</span></a>
+        <?php endif; ?>
+    </header>
