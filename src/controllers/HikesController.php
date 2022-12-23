@@ -51,7 +51,6 @@ class HikesController
 
         $hike = $this->singleHike->find($id);
 
-        var_dump($hike);
 
         include '../views/header.view.php';
         include '../views/singleHike.view.php';

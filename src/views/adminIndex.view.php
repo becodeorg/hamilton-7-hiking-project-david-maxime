@@ -9,8 +9,9 @@
             <button>Update</button>
         </a>
         <form method="post">
-            <input type="text" name="id" value="<?php echo $hike['ID']?>">
+            <input type="text" name="id" value="<?php echo $hike['ID']?>" class="hidden">
             <button type="submit">Delete</button>
         </form>
+        <br>
     <?php endforeach; ?>
 </ul>
