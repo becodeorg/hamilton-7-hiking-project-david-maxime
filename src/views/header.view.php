@@ -29,11 +29,11 @@
                 <li class="bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white"><a href="/login">Login</a></li>
 
                 <!-- REGISTER -->
-                <l class="bg-slate-200 w-24 h-8 flex justify-center items-center rounded-full "><a href="/registration">Register</a></l>
+                <li class="bg-slate-200 w-24 h-8 flex justify-center items-center rounded-full "><a href="/registration">Register</a></li>
             <?php else : ?>
 
                 <!-- LOGOUT -->
-                <li><a href="/logout">Logout</a></li>
+                <li class="list-none bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white""><a href="/logout">Logout</a></li>
             <?php endif; ?>
             </ul>
         </nav>
@@ -47,3 +47,4 @@
             <a href="/myprofile">See my profile</a>
         <?php endif; ?>
     </header>
+</body>

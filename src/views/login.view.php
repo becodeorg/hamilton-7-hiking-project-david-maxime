@@ -24,6 +24,7 @@
                 <!-- FORM -->
                 <form action="login" method="post" class=" h-48 w-full flex flex-col justify-between">
                     <div class="">
+                        
                         <!-- <label for="nickname" class="invisible">Nickname</label> -->
                         <input type="text" name="nickname" placeholder="Nickname" class="border hover:border-2 border-green-900 w-full h-12 rounded-lg px-4">
                     </div>
