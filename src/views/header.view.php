@@ -52,7 +52,7 @@
             <a href="/myprofile"><span>Admin Panel</span></a>
         <?php endif; ?>
 
-        <section class="heroBgImage w-full h-[43rem] bg-red-500 overflow-hidden relative">
+        <section class="heroBgImage w-full h-[43rem] overflow-hidden relative">
             <img src="https://unsplash.it/1920/1080" alt="image/png">
         </section>
     </header>
