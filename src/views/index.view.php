@@ -22,15 +22,19 @@
                 <!-- HIKES -->
         <ul class="grid grid-cols-4 gap-4">
             <?php foreach ($hikes as $hike) : ?>
-                <li class="bg-slate-500 m-8 w-96 h-64 rounded-xl ">
+
+                <li class="bg-gradient-to-t from-slate-900 to-invisible | text-white | flex flex-col justify-end | relative | m-8 | w-96 h-64 | rounded-xl | overflow-hidden | static">
                     <a href="/hike?id=<?= $hike['ID']; ?>">
-                        <span><?= $hike['name'] ?></span>
+                        <span class="text-xl mx-8"><?= $hike['name'] ?></span>
                     </a>
-                    <span><?= $hike['duration'] ?>min</span>
-                    <span><?= $hike['distance'] ?>km</span>
-                    <span><?= $hike['elevation_gain'] ?>m</span>
+                    <section class="flex flex-row">
+                    <span class="mx-8"><?= $hike['duration'] ?>min</span>
+                    <span class="mx-8"><?= $hike['distance'] ?>km</span>
+                    <span class="mx-8"><?= $hike['elevation_gain'] ?>m</span>
+                    </section>
                     <br>
-                    <span><?= $hike['description'] ?></span>
+                    <span class="mx-8"><?= $hike['description'] ?></span>
+                    <img class="absolute left-0 top-0 -z-50" src="https://unsplash.it/400/300?random=1" alt="image/png">
                 </li>
             <?php endforeach; ?>
         </ul>
