@@ -20,6 +20,7 @@
                     <h1>Hiking Manager</h1>
                 </a>
             </section>
+
             <?php if (empty($_SESSION['user'])) : ?>
                 <!-- LINKS -->
                 <ul class="flex flex-row justify-around font-semibold w-52 mx-3">
@@ -32,13 +33,13 @@
                 <?php else : ?>
 
                     <!-- LOGOUT -->
-                    <li class="list-none bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white""><a href=" /logout">Logout</a></li>
+                    <li class="list-none bg-green-800 w-24 h-8 flex justify-center items-center rounded-full text-white mx-8""><a href=" /logout">Logout</a></li>
                 <?php endif; ?>
                 </ul>
         </nav>
 
         <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] === 0) : ?>
-            <span>Hello <?php echo $_SESSION['user']['nickname'] ?></span>
+            <span class="mx-5 text-2xl font-bold">Hello <?php echo $_SESSION['user']['nickname'] . "!" ?></span>
             <br>
             <a href="/addHike"><span>Add a new hike!</span></a>
             <a href="/myhikes"><span>Manage my hikes</span></a>
