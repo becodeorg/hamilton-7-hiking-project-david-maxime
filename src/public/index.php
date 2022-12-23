@@ -10,8 +10,8 @@ require "../models/Hikes.php";
 $url = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $method = $_SERVER['REQUEST_METHOD'];
 
-var_dump($_SERVER['REQUEST_URI']);
-var_dump($_SESSION);
+//var_dump($_SERVER['REQUEST_URI']);
+//var_dump($_SESSION);
 
 
 if ($url === '/' || $url === '') {
@@ -97,7 +97,8 @@ if ($url === 'updateHike') {
 
     $hikesController = new HikesController();
     if ($method === 'GET') {
-        $hikesController->showUpdateHikeForm();
+        $id = $_GET["id"];
+        $hikesController->showUpdateHikeForm($id);
     }
 
     if ($method === 'POST') {
@@ -114,7 +115,6 @@ if ($url === 'addHike') {
     }
 
     if ($method === 'POST') {
-
         $hikesController->addHike($_POST);
     }
 

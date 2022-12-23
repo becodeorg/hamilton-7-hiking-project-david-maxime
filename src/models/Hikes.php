@@ -7,7 +7,7 @@ class Hike extends Database
     {
         try {
             return $this->query(
-                'SELECT name, ID FROM Hikes'
+                'SELECT * FROM Hikes'
             )->fetchAll();
 
         } catch (Exception $e) {
@@ -36,7 +36,7 @@ class Hike extends Database
     {
         try {
             return $this->query(
-                "SELECT name FROM Hikes WHERE ID = ?",
+                "SELECT * FROM Hikes WHERE ID = ?",
                 [
                     $id
                 ]
@@ -48,7 +48,7 @@ class Hike extends Database
         }
     }
 
-    public function createHike(string $name, int $distance, int $duration, int $elevation, string $description, string $tag)
+    public function createHike(string $name, int $distance, int $duration, int $elevation, string $description, array $tags)
     {
         $this->query('SET foreign_key_checks = 0');
         $hikeID = rand(0, 1000000000);
@@ -67,15 +67,18 @@ class Hike extends Database
         )) {
             throw new Exception('Error during hike creation.');
         }
-        $this->query("INSERT INTO HikesTags (`HikesID`,`TagsID`) SELECT (SELECT ID FROM Hikes WHERE ID = ?), (SELECT ID FROM Tags WHERE name = ?)",
-            [
-                $hikeID,
-                $tag
-            ]
-        );
+        foreach($tags as $tag)
+        {
+            $this->query("INSERT INTO HikesTags (`HikesID`,`TagsID`) SELECT (SELECT ID FROM Hikes WHERE ID = ?), (SELECT ID FROM Tags WHERE name = ?)",
+                [
+                    $hikeID,
+                    $tag
+                ]
+            );
+        }
     }
 
-    public function modifyHike(string $name, int $distance, int $duration, int $elevation, string $description, $id, string $tag)
+    public function modifyHike(string $name, int $distance, int $duration, int $elevation, string $description, $id, array $tags)
     {
         if($_SESSION['user']['isAdmin'] === 0) {
         $this->query('SET foreign_key_checks = 0');
@@ -112,11 +115,15 @@ class Hike extends Database
                 throw new Exception('Error during hike creation.');
             }}
             $this->query("DELETE FROM HikesTags WHERE HikesID = ?", [$id]);
-            $this->query("INSERT INTO HikesTags (`HikesID`,`TagsID`) SELECT (SELECT ID FROM Hikes WHERE ID = ?), (SELECT ID FROM Tags WHERE name = ?)",
-            [
-                $id,
-                $tag
-            ]);
+            foreach($tags as $tag)
+            {
+                $this->query("INSERT INTO HikesTags (`HikesID`,`TagsID`) SELECT (SELECT ID FROM Hikes WHERE ID = ?), (SELECT ID FROM Tags WHERE name = ?)",
+                    [
+                        $id,
+                        $tag
+                    ]
+                );
+            }
     }
 
     public function removeHike($id)

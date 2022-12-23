@@ -21,7 +21,7 @@
         </ul>
     </nav>
 
-    <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] === 0): ?>
+    <?php if (!empty($_SESSION['user']) && $_SESSION['user']['isAdmin'] != 1): ?>
         <span>Hello <?php echo $_SESSION['user']['nickname'] ?></span>
         <br>
         <a href="/addHike"><span>Add a new hike!</span></a>
