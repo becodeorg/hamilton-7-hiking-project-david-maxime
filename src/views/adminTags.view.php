@@ -6,9 +6,11 @@
             </a>
         </li>
         <form method="post">
-            <input type="text" name="id" value="<?php echo $tag['ID']?>">
+            <input type="text" name="id" value="<?php echo $tag['ID']?>" class="hidden">
             <button type="submit">Delete</button>
         </form>
+    <br>
     <?php endforeach; ?>
+    <br>
     <a href="/addTag">Add a tag</a>
 </ul>

@@ -6,8 +6,9 @@
             </a>
         </li>
         <form method="post">
-            <input type="text" name="id" value="<?php echo $user['ID']?>">
+            <input type="text" name="id" value="<?php echo $user['ID']?>" class="hidden">
             <button type="submit">Delete</button>
         </form>
+        <br>
     <?php endforeach; ?>
 </ul>

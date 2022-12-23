@@ -1,45 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="flex flex-wrap justify-center">
+    <?php foreach ($tags as $tag) : ?>
+    <div class="max-w-sm m-2 bg-slate-200 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <a href="/tag?name=<?= $tag['name']; ?>">
+            <button><?= $tag['name'] ?></button>
+        </a>
+    </div>
+    <?php endforeach; ?>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
-</head>
-
-<body>
-    <main>
-        <!-- BUTTONS -->
-        <ul>
-            <?php foreach ($tags as $tag) : ?>
-                <a href="/tag?name=<?= $tag['name']; ?>">
-                    <button><?= $tag['name'] ?></button>
+<div class="flex flex-wrap justify-center">
+    <?php foreach ($hikes as $hike) : ?>
+        <div class="max-w-sm m-2 bg-slate-200 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-5">
+                <a href="/hike?id=<?= $hike['ID']; ?>">
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><?= $hike['name'] ?></h2>
                 </a>
-            <?php endforeach; ?>
-        </ul>
-        <!-- HIKES -->
-        <ul class="grid grid-cols-4 gap-4">
-            <?php foreach ($hikes as $hike) : ?>
-
-                <li class="bg-gradient-to-t from-slate-900 to-invisible | text-white | flex flex-col justify-end | relative | m-8 | w-96 h-64 | rounded-xl | overflow-hidden | static">
-                    <section class="blocText | mb-8">
-                    <a href="/hike?id=<?= $hike['ID']; ?>">
-                        <span class="text-xl mx-8"><?= $hike['name'] ?></span>
-                    </a>
-                    <ul class="flex flex-row">
-                        <li><span class="mx-8"><?= $hike['duration'] ?>min</span><li>
-                        <li><span class="mx-8"><?= $hike['distance'] ?>km</span></li>
-                        <li><span class="mx-8"><?= $hike['elevation_gain'] ?>m</span></li>
-                    </ul>
-                    <span class="mx-8"><?= $hike['description'] ?></span>
-                    </section>
-                    <img class="absolute left-0 top-0 -z-50" src="https://unsplash.it/400/300?random=1" alt="image/png">
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </main>
-</body>
-
-</html>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><?= $hike['description']?></p>
+                <a href="/hike?id=<?= $hike['ID']; ?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Read more
+                </a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
